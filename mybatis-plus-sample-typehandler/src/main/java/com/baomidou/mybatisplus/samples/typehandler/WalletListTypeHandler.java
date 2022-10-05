@@ -20,6 +20,7 @@ public class WalletListTypeHandler extends JacksonTypeHandler {
     @Override
     protected Object parse(String json) {
         try {
+            // Wallet列表
             return getObjectMapper().readValue(json, new TypeReference<List<Wallet>>() {
             });
         } catch (IOException e) {
