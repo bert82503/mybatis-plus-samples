@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2020-05-29
  */
 @SpringBootApplication
-public class PagehelperApplication {
+public class PageHelperApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PagehelperApplication.class, args);
+        SpringApplication.run(PageHelperApplication.class, args);
     }
 }
