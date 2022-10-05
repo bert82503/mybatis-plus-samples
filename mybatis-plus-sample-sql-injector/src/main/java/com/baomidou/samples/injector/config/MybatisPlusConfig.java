@@ -13,6 +13,8 @@ public class MybatisPlusConfig {
 
     @Bean
     public MySqlInjector sqlInjector() {
+        // sql注入器
+        // 自定义Sql注入
         return new MySqlInjector();
     }
 }
