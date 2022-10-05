@@ -4,7 +4,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
@@ -26,9 +25,13 @@ public class MybatisPlusConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new TenantLineHandler() {
+        // TenantLineInnerInterceptor-租户拦截器（TenantId 行级）
+        // TenantLineHandler-租户处理器（TenantId 行级）
+        interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(
+                new TenantLineHandler() {
             @Override
             public Expression getTenantId() {
+                // 获取租户 ID 值表达式，只支持单个 ID 值
                 return new LongValue(1);
             }
 
@@ -37,7 +40,8 @@ public class MybatisPlusConfig {
             public boolean ignoreTable(String tableName) {
                 return !"user".equalsIgnoreCase(tableName);
             }
-        }));
+        }
+        ));
         // 如果用了分页插件注意先 add TenantLineInnerInterceptor 再 add PaginationInnerInterceptor
         // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false
 //        interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
