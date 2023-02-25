@@ -8,6 +8,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * @author hubin
+ * @see com.baomidou.mybatisplus.annotation.TableName
+ * @see com.baomidou.mybatisplus.annotation.TableId
+ * @see com.baomidou.mybatisplus.annotation.TableField
+ */
 @Setter
 @Getter
 @ToString
@@ -20,5 +26,4 @@ public class User {
     private String name;
     private Integer age;
     private String email;
-
 }
