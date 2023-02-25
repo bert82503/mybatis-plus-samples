@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author nieqiuqiu
+ * @see com.baomidou.mybatisplus.extension.service.impl.ServiceImpl 
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
-
+    //
 }
