@@ -15,11 +15,14 @@ import lombok.experimental.Accessors;
  *
  * @author hubin
  * @since 2018-08-11
+ * @see com.baomidou.mybatisplus.extension.activerecord.Model
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
 public class User extends Model<User> {
+    private static final long serialVersionUID = 7866454669765374764L;
+
     private Long id;
     private String name;
     private Integer age;
@@ -27,7 +30,7 @@ public class User extends Model<User> {
 
     @Override
     public Serializable pkVal() {
-        /**
+        /*
          * AR 模式这个必须有，否则 xxById 的方法都将失效！
          * 另外 UserMapper 也必须 AR 依赖该层注入，有可无 XML
          */
