@@ -6,8 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author nieqiuqiu
+ * @see org.apache.ibatis.annotations.Mapper
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-
+    //
 }
