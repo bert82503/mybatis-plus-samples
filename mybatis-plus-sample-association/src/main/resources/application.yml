@@ -9,6 +9,7 @@ spring:
     password: test
     
 # Mybatis-Plus
+# com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties
 mybatis-plus:
   # Maven 多模块项目的扫描路径需以 classpath*: 开头 （即加载多个 jar 包下的 XML 文件）
   mapper-locations: classpath*:/mapper/**/*.xml
