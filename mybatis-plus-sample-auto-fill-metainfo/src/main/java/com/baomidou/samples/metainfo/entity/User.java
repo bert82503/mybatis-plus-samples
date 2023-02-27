@@ -10,9 +10,10 @@ import lombok.NoArgsConstructor;
 /**
  * 用户实体
  * @author nieqiurong 2018-08-10 22:55:21.
+ * @see com.baomidou.mybatisplus.annotation.TableField
  */
-@Data
 @TableName(value = "user")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -24,7 +25,10 @@ public class User {
     private Integer age;
     
     private String email;
-    
+
+    /**
+     * 字段填充策略
+     */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String operator;
 }

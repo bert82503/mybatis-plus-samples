@@ -7,8 +7,11 @@ import org.springframework.stereotype.Component;
 
 /**
  * 填充器
+ * <p></p>
+ * 元对象字段填充控制器抽象类，实现公共字段自动写入
  *
  * @author nieqiurong 2018-08-10 22:59:23.
+ * @see com.baomidou.mybatisplus.core.handlers.MetaObjectHandler
  */
 @Slf4j
 @Component
