@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author hubin
+ * @see com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
+ */
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
     public List<User> selectUserPage(IPage<User> page, QueryWrapper<User> wrapper) {
