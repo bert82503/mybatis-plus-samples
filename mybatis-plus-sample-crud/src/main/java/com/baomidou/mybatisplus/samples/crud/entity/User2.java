@@ -2,12 +2,9 @@ package com.baomidou.mybatisplus.samples.crud.entity;
 
 import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.apache.ibatis.type.JdbcType;
-
-import java.util.List;
 
 /**
  * <p>
@@ -16,6 +13,7 @@ import java.util.List;
  *
  * @author hubin
  * @since 2021-08-19
+ * @see com.baomidou.mybatisplus.annotation.TableField
  */
 @Data
 @Accessors(chain = true)

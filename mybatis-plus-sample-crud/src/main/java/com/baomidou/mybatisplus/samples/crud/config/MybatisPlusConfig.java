@@ -6,9 +6,10 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author miemie
  * @since 2018-08-10
+ * @see org.mybatis.spring.annotation.MapperScan
  */
 @Configuration
 @MapperScan("com.baomidou.mybatisplus.samples.crud.mapper")
 public class MybatisPlusConfig {
-
+    //
 }

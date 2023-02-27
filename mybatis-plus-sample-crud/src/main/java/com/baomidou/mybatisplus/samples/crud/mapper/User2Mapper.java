@@ -1,8 +1,6 @@
 package com.baomidou.mybatisplus.samples.crud.mapper;
 
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.samples.crud.entity.User;
 import com.baomidou.mybatisplus.samples.crud.entity.User2;
 
 /**
@@ -12,7 +10,8 @@ import com.baomidou.mybatisplus.samples.crud.entity.User2;
  *
  * @author hubin
  * @since 2021-08-19
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 public interface User2Mapper extends BaseMapper<User2> {
-
+    //
 }
