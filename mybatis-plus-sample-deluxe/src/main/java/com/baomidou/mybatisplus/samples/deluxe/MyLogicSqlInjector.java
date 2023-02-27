@@ -15,6 +15,7 @@ import com.baomidou.mybatisplus.samples.deluxe.methods.MysqlInsertAllBatch;
  *
  * @author miemie
  * @since 2018-08-13
+ * @see com.baomidou.mybatisplus.core.injector.DefaultSqlInjector 
  */
 public class MyLogicSqlInjector extends DefaultSqlInjector {
 
