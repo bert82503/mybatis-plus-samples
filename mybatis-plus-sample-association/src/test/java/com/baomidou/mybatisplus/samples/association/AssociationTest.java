@@ -19,6 +19,7 @@ import java.util.List;
 
 @SpringBootTest
 public class AssociationTest {
+
     @Autowired
     private CompanyMapper companyMapper;
     @Autowired
@@ -44,7 +45,7 @@ public class AssociationTest {
             userList.add(user);
         }
         userService.saveBatch(userList);
-        userService.list().forEach(t -> System.out.println(t));
+        userService.list().forEach(System.out::println);
         testSelect();
         testUpdate();
     }
@@ -54,12 +55,13 @@ public class AssociationTest {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("t.company_id", 1);
         int pageSize = 5;
-        IPage<User> page = new Page<User>(1, pageSize);
+        IPage<User> page = new Page<>(1, pageSize);
         List<User> userList = userService.selectUserPage(page, wrapper);
         for (int i = 1; i <= page.getPages(); ++i) {
-            page = new Page<User>(i, pageSize);
+            page = new Page<>(i, pageSize);
             userList = userService.selectUserPage(page, wrapper);
-            System.out.printf("==========================>共%d条数据,当前显示第%d页，每页%d条，共%d页====================================>\n", page.getTotal(), page.getCurrent(), page.getSize(), page.getPages());
+            System.out.printf("==========================>共%d条数据,当前显示第%d页，每页%d条，共%d页====================================>\n",
+                    page.getTotal(), page.getCurrent(), page.getSize(), page.getPages());
             userList.forEach(System.out::println);
         }
     }
@@ -77,6 +79,6 @@ public class AssociationTest {
     @Test
     public void testResultMapCollection() {
         Company company = companyMapper.testResultMapCollection();
-        Assertions.assertTrue(3 == company.getUserList().size());
+        Assertions.assertEquals(company.getUserList().size(), 3);
     }
 }
