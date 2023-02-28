@@ -27,16 +27,26 @@ public class User {
     private Long id;
     private String name;
     private Integer age;
+    /**
+     * 自定义类型处理器
+     */
     @TableField(typeHandler = TestTypeHandler.class)
     private String email;
 
     @Version
     private Integer version;
 
+    /**
+     * 表字段逻辑处理（逻辑删除）
+     * 是否进行 select 查询
+     */
     @TableLogic(value = "0", delval = "1")
     @TableField(select = false)
     private Integer deleted;
 
+    /**
+     * 字段自动填充策略
+     */
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Timestamp createTime;
 }
