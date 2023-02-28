@@ -22,7 +22,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         LOGGER.info("start insert fill ....");
-        //避免使用metaObject.setValue()
+        // 避免使用metaObject.setValue()
+        // 数据记录的创建时间
         this.strictInsertFill(metaObject,
                 "createTime", Timestamp.class, new Timestamp(System.currentTimeMillis()));
     }
