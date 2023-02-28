@@ -13,6 +13,7 @@ import java.sql.SQLException;
  *
  * @author miemie
  * @since 2018-08-13
+ * @see org.apache.ibatis.type.BaseTypeHandler
  */
 public class TestTypeHandler extends BaseTypeHandler<String> {
 
