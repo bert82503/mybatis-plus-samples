@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author miemie
  * @since 2018-08-12
+ * @see com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor
+ * @see com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor
  */
 @Configuration
 @MapperScan("com.baomidou.mybatisplus.samples.deluxe.mapper")
@@ -18,8 +20,11 @@ public class MybatisPlusConfig {
 
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        // 拦截器
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 分页拦截器
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        // 乐观锁拦截器
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
         return interceptor;
     }
