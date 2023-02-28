@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baomidou.mybatisplus.samples.deluxe.mapper.UserMapper">
 
-    <select id="selectUserPage" resultType="com.baomidou.mybatisplus.samples.deluxe.entity.User">
+    <select id="selectUserPage" resultType="com.baomidou.mybatisplus.samples.deluxe.model.UserPage">
         select *
         from user
         <trim prefix="where" prefixOverrides="AND">
