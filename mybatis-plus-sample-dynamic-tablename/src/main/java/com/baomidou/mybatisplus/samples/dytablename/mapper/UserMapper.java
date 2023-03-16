@@ -1,6 +1,5 @@
 package com.baomidou.mybatisplus.samples.dytablename.mapper;
 
-
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.samples.dytablename.entity.User;
 
@@ -11,7 +10,8 @@ import com.baomidou.mybatisplus.samples.dytablename.entity.User;
  *
  * @author hubin
  * @since 2018-08-11
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 public interface UserMapper extends BaseMapper<User> {
-
+    //
 }
