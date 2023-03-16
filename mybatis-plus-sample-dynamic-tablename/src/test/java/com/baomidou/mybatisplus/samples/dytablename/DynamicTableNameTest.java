@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.samples.dytablename.config.RequestDataHelper;
 import com.baomidou.mybatisplus.samples.dytablename.entity.User;
 import com.baomidou.mybatisplus.samples.dytablename.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
@@ -25,7 +24,10 @@ class DynamicTableNameTest {
 
     @Test
     void test() {
-        RequestDataHelper.setRequestData(new HashMap<String, Object>() {{
+        RequestDataHelper.setRequestData(new HashMap<String, Object>() {
+            private static final long serialVersionUID = 8904848291446590324L;
+
+            {
             put("id", 123);
             put("hello", "tomcat");
             put("name", "汤姆凯特");
