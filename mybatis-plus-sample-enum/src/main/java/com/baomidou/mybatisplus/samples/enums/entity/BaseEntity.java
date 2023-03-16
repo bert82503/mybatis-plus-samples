@@ -1,6 +1,5 @@
 package com.baomidou.mybatisplus.samples.enums.entity;
 
-
 import lombok.Data;
 import lombok.experimental.Accessors;
 

@@ -8,6 +8,12 @@ package com.baomidou.mybatisplus.samples.enums.enums;
  * @date 2018/8/31
  */
 public enum GenderEnum {
+    /**
+     * 男性
+     */
     MALE,
+    /**
+     * 女性
+     */
     FEMALE;
 }

@@ -10,5 +10,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan("com.baomidou.mybatisplus.samples.enums.mapper")
 public class MybatisPlusConfig {
-
+    //
 }

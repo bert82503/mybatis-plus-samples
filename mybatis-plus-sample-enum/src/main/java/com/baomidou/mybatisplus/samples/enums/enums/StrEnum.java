@@ -12,6 +12,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum StrEnum {
 
+    /**
+     * 一
+     */
     ONE("one"),
     TWO("two");
 

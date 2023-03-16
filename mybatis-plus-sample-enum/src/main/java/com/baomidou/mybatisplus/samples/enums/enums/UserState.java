@@ -14,6 +14,9 @@ import lombok.Getter;
 @Getter
 public enum UserState implements IBaseEnum<Integer> {
 
+    /**
+     * 活跃用户
+     */
     ACTIVE(1, "A"),
     INACTIVE(2, "I");
 

@@ -21,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author hubin
  * @since 2018-08-11
+ * @see com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
  */
 @SpringBootTest
 public class EnumTest {
@@ -61,24 +62,29 @@ public class EnumTest {
 
     @Test
     public void delete() {
-        Assertions.assertTrue(mapper.delete(new QueryWrapper<User>()
-                .lambda().eq(User::getAge, AgeEnum.TWO)) > 0);
+        Assertions.assertTrue(mapper.delete(new QueryWrapper<User>().lambda()
+                .eq(User::getAge, AgeEnum.TWO)
+        ) > 0);
     }
 
     @Test
     public void update() {
         Assertions.assertTrue(mapper.update(new User().setAge(AgeEnum.TWO),
-                new QueryWrapper<User>().eq("age", AgeEnum.THREE)) > 0);
+                new QueryWrapper<User>()
+                        .eq("age", AgeEnum.THREE)
+        ) > 0);
     }
 
     @Test
     public void select() {
-        User user = mapper.selectOne(new QueryWrapper<User>().lambda().eq(User::getId, 2));
+        User user = mapper.selectOne(new QueryWrapper<User>().lambda()
+                .eq(User::getId, 2));
         Assertions.assertEquals("Jack", user.getName());
         Assertions.assertSame(AgeEnum.THREE, user.getAge());
 
         //#1500 github: verified ok. Not a bug
-        List<User> userList = mapper.selectList(new QueryWrapper<User>().lambda().eq(User::getUserState, UserState.ACTIVE));
+        List<User> userList = mapper.selectList(new QueryWrapper<User>().lambda()
+                .eq(User::getUserState, UserState.ACTIVE));
         //TODO 一起测试的时候完蛋，先屏蔽掉了。
 //        Assertions.assertEquals(3, userList.size());
         Optional<User> userOptional = userList.stream()

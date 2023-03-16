@@ -1,6 +1,5 @@
 package com.baomidou.mybatisplus.samples.enums.enums;
 
-
 import com.baomidou.mybatisplus.annotation.IEnum;
 
 import lombok.Getter;
@@ -15,6 +14,9 @@ import lombok.Getter;
  */
 @Getter
 public enum AgeEnum implements IEnum<Integer> {
+  /**
+   * 一岁
+   */
   ONE(1, "一岁"),
   TWO(2, "二岁"),
   THREE(3, "三岁");

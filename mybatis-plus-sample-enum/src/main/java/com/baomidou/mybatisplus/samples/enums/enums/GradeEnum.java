@@ -14,8 +14,11 @@ import lombok.Getter;
 @Getter
 public enum GradeEnum {
 
+    /**
+     * 小学
+     */
     PRIMARY(1, "小学"),
-    SECONDORY(2, "中学"),
+    SECONDARY(2, "中学"),
     HIGH(3, "高中");
 
     GradeEnum(int code, String descp) {
