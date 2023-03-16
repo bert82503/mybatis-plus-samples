@@ -25,6 +25,6 @@ public interface UserMapper extends MyBaseMapper<User> {
 
     List<User> findList(@Param("user") User user);
 
-    List<User> customerSqlSegment(@Param("ew") Wrapper ew);
+    List<User> customSqlSegment(@Param("ew") Wrapper<User> ew);
 
 }

@@ -13,17 +13,31 @@ import com.baomidou.mybatisplus.core.metadata.TableInfo;
  *
  * @author yuxiaobin
  * @date 2019/6/14
+ * @see com.baomidou.mybatisplus.core.injector.AbstractMethod
+ * @see org.apache.ibatis.mapping.MappedStatement
+ * @see org.apache.ibatis.mapping.SqlSource
  */
 public class MysqlInsertAllBatch extends AbstractMethod {
+
+    private static final long serialVersionUID = 3007249133144779133L;
+
+    public MysqlInsertAllBatch() {
+        this("mysqlInsertAllBatch");
+    }
+
+    public MysqlInsertAllBatch(String methodName) {
+        super(methodName);
+    }
 
     @Override
     public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
         final String sql = "<script>insert into %s %s values %s</script>";
-        final String fieldSql = prepareFieldSql(tableInfo);
-        final String valueSql = prepareValuesSqlForMysqlBatch(tableInfo);
+        final String fieldSql = this.prepareFieldSql(tableInfo);
+        final String valueSql = this.prepareValuesSqlForMysqlBatch(tableInfo);
         final String sqlResult = String.format(sql, tableInfo.getTableName(), fieldSql, valueSql);
         SqlSource sqlSource = languageDriver.createSqlSource(configuration, sqlResult, modelClass);
-        return this.addInsertMappedStatement(mapperClass, modelClass, "mysqlInsertAllBatch", sqlSource, new NoKeyGenerator(), null, null);
+        return this.addInsertMappedStatement(mapperClass, modelClass, sqlSource,
+                new NoKeyGenerator(), null, null);
     }
 
     private String prepareFieldSql(TableInfo tableInfo) {
