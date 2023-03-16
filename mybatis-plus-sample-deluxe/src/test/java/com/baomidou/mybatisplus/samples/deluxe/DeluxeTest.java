@@ -18,6 +18,7 @@ import java.util.List;
 /**
  * @author miemie
  * @since 2018-08-13
+ * @see com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
  */
 @SpringBootTest
 class DeluxeTest {
@@ -38,7 +39,8 @@ class DeluxeTest {
 
         System.out.println("------ baseMapper 自带分页 ------");
         Page<User> page = new Page<>(1, 5);
-        IPage<User> userIPage = mapper.selectPage(page, new QueryWrapper<User>().eq("age", 20));
+        IPage<User> userIPage = mapper.selectPage(page, new QueryWrapper<User>()
+                .eq("age", 20));
         Assertions.assertSame(userIPage, page);
         System.out.println("总条数 ------> " + userIPage.getTotal());
         System.out.println("当前页数 ------> " + userIPage.getCurrent());
@@ -83,6 +85,7 @@ class DeluxeTest {
 
         User user = mapper.selectById(id);
         Assertions.assertNotNull(user);
+        // 字段自动填充策略-数据记录的创建时间
         Assertions.assertNotNull(user.getCreateTime());
     }
 
@@ -108,7 +111,7 @@ class DeluxeTest {
     void testCustomSqlSegment() {
         QueryWrapper<User> ew = new QueryWrapper<>();
         ew.like("u.name", "Tom");
-        List<User> list = mapper.customerSqlSegment(ew);
+        List<User> list = mapper.customSqlSegment(ew);
         Assertions.assertEquals(1, list.size());
     }
 }
