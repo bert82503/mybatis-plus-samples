@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.IEnum;
 
-
 /**
  * <p>
  * #1500 github
@@ -12,6 +11,7 @@ import com.baomidou.mybatisplus.annotation.IEnum;
  *
  * @author yuxiaobin
  * @date 2019/8/29
+ * @see com.baomidou.mybatisplus.annotation.IEnum
  */
 public interface IBaseEnum<T extends Serializable> extends IEnum<T> {
 
