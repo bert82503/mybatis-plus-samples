@@ -1,6 +1,5 @@
 package com.baomidou.mybatisplus.no.spring;
 
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,14 +20,16 @@ import com.baomidou.mybatisplus.no.spring.entity.Person;
 import com.baomidou.mybatisplus.no.spring.mapper.PersonMapper;
 
 /**
+ * 非容器式启动。
  * @author miemie
  * @since 2020-03-11
  */
 public class NoSpring {
 
-    private static SqlSessionFactory sqlSessionFactory = initSqlSessionFactory();
+    private static final SqlSessionFactory sqlSessionFactory = initSqlSessionFactory();
 
     public static void main(String[] args) {
+        // 开启SQL执行会话
         try (SqlSession session = sqlSessionFactory.openSession(true)) {
             PersonMapper mapper = session.getMapper(PersonMapper.class);
             Person person = new Person().setName("老李");
@@ -38,9 +39,12 @@ public class NoSpring {
     }
 
     public static SqlSessionFactory initSqlSessionFactory() {
+        // 数据源
         DataSource dataSource = dataSource();
+        // 事务
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
-        Environment environment = new Environment("Production", transactionFactory, dataSource);
+        Environment environment = new Environment("Production",
+                transactionFactory, dataSource);
         MybatisConfiguration configuration = new MybatisConfiguration(environment);
         configuration.addMapper(PersonMapper.class);
         configuration.setLogImpl(StdOutImpl.class);
@@ -48,13 +52,16 @@ public class NoSpring {
     }
 
     public static DataSource dataSource() {
+        // 数据源
         SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
         dataSource.setDriverClass(org.h2.Driver.class);
         dataSource.setUrl("jdbc:h2:mem:test");
         dataSource.setUsername("root");
         dataSource.setPassword("test");
         try {
+            // 数据库链接
             Connection connection = dataSource.getConnection();
+            // 执行语句
             Statement statement = connection.createStatement();
             statement.execute("create table person (" +
                     "id BIGINT(20) NOT NULL," +
