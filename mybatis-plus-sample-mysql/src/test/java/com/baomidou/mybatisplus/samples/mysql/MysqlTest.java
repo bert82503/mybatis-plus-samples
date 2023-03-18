@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 class MysqlTest {
+
     @Resource
     private TestDataMapper testDataMapper;
     @Resource
@@ -50,7 +51,7 @@ class MysqlTest {
         testData.setTestEnum(TestEnum.ONE).setTestStr("abc");
         Assertions.assertEquals(testDataMapper.insert(testData), 1);
         testData = testDataMapper.selectById(testData.getId());
-        Assertions.assertTrue(null != testData);
+        Assertions.assertNotNull(testData);
         Assertions.assertEquals(1, testData.getId());
         System.err.println(testData);
         // 自增 id 增长为 2
@@ -58,7 +59,7 @@ class MysqlTest {
         testData2.setTestEnum(TestEnum.TWO).setTestStr("def");
         Assertions.assertEquals(testDataMapper.insert(testData2), 1);
         testData2 = testDataMapper.selectById(testData2.getId());
-        Assertions.assertTrue(null != testData2);
+        Assertions.assertNotNull(testData2);
         Assertions.assertEquals(2, testData2.getId());
         System.err.println(testData2);
     }
