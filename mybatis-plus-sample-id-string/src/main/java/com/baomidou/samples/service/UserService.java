@@ -5,7 +5,11 @@ import com.baomidou.samples.entity.User;
 import com.baomidou.samples.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
+/**
+ * @see com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
+ * @see com.baomidou.mybatisplus.extension.service.IService
+ */
 @Service
 public class UserService extends ServiceImpl<UserMapper, User> {
-
+    //
 }
