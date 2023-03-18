@@ -19,6 +19,7 @@ import java.util.HashMap;
  */
 @SpringBootTest
 class DynamicTableNameTest {
+
     @Resource
     private UserMapper userMapper;
 

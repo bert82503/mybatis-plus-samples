@@ -13,13 +13,13 @@ import java.util.List;
 
 /**
  * @author nieqiuqiu 2019/11/30
+ * @see org.springframework.boot.test.context.SpringBootTest
  */
 @SpringBootTest
 public class IdGeneratorTest {
 
     @Resource
     private UserMapper userMapper;
-
     @Resource
     private UserService userService;
 
@@ -46,6 +46,6 @@ public class IdGeneratorTest {
             users.add(user);
         }
         boolean result = userService.saveBatch(users);
-        Assertions.assertEquals(true, result);
+        Assertions.assertTrue(result);
     }
 }

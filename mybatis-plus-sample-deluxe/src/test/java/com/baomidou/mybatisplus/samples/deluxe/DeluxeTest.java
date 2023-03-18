@@ -24,13 +24,13 @@ import java.util.List;
 class DeluxeTest {
 
     @Resource
-    private UserMapper mapper;
+    private UserMapper userMapper;
 
     @Test
     public void testPage() {
         System.out.println("------ 自定义 xml 分页 ------");
         UserPage selectPage = new UserPage(1, 5).setSelectInt(20);
-        UserPage userPage = mapper.selectUserPage(selectPage);
+        UserPage userPage = userMapper.selectUserPage(selectPage);
         Assertions.assertSame(userPage, selectPage);
         System.out.println("总条数 ------> " + userPage.getTotal());
         System.out.println("当前页数 ------> " + userPage.getCurrent());
@@ -39,7 +39,7 @@ class DeluxeTest {
 
         System.out.println("------ baseMapper 自带分页 ------");
         Page<User> page = new Page<>(1, 5);
-        IPage<User> userIPage = mapper.selectPage(page, new QueryWrapper<User>()
+        IPage<User> userIPage = userMapper.selectPage(page, new QueryWrapper<User>()
                 .eq("age", 20));
         Assertions.assertSame(userIPage, page);
         System.out.println("总条数 ------> " + userIPage.getTotal());
@@ -50,24 +50,24 @@ class DeluxeTest {
 
     @Test
     void testDelAll() {
-        mapper.deleteAll();
+        userMapper.deleteAll();
     }
 
     @Test
     void testInsert() {
         User u = new User().setEmail("122@qq.com").setVersion(1).setDeleted(0);
-        mapper.insert(u);
+        userMapper.insert(u);
 
         u.setAge(18);
-        mapper.updateById(u);
-        u = mapper.selectById(u.getId());
+        userMapper.updateById(u);
+        u = userMapper.selectById(u.getId());
         // version should be updated
         Assertions.assertEquals(2, u.getVersion().intValue());
     }
 
     @Test
     void testSelect() {
-        System.out.println(mapper.selectById(1L));
+        System.out.println(userMapper.selectById(1L));
     }
 
     private <T> void print(List<T> list) {
@@ -81,9 +81,9 @@ class DeluxeTest {
     void myInsertAll() {
         long id = 1008888L;
         User u = new User().setEmail("122@qq.com").setVersion(1).setDeleted(0).setId(id);
-        mapper.myInsertAll(u);
+        userMapper.myInsertAll(u);
 
-        User user = mapper.selectById(id);
+        User user = userMapper.selectById(id);
         Assertions.assertNotNull(user);
         // 字段自动填充策略-数据记录的创建时间
         Assertions.assertNotNull(user.getCreateTime());
@@ -95,23 +95,23 @@ class DeluxeTest {
         List<User> batchList = new ArrayList<>(2);
         batchList.add(new User().setId(id++).setEmail("111@qq.com").setVersion(1).setDeleted(0));
         batchList.add(new User().setId(id).setEmail("112@qq.com").setVersion(1).setDeleted(0));
-        mapper.mysqlInsertAllBatch(batchList);
+        userMapper.mysqlInsertAllBatch(batchList);
 
-        User user = mapper.selectById(1009991);
+        User user = userMapper.selectById(1009991);
         Assertions.assertNotNull(user);
         Assertions.assertNotNull(user.getCreateTime());
     }
 
     @Test
     void verifyGithub1532() {
-        mapper.findList(new User().setName("a")).forEach(System.out::println);
+        userMapper.findList(new User().setName("a")).forEach(System.out::println);
     }
 
     @Test
     void testCustomSqlSegment() {
         QueryWrapper<User> ew = new QueryWrapper<>();
         ew.like("u.name", "Tom");
-        List<User> list = mapper.customSqlSegment(ew);
+        List<User> list = userMapper.customSqlSegment(ew);
         Assertions.assertEquals(1, list.size());
     }
 }

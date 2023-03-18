@@ -25,12 +25,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest
 public class EnumTest {
+
     @Resource
-    private UserMapper mapper;
+    private UserMapper userMapper;
     
     @Test
     public void selectXML() {
-        User user = mapper.selectLinkById(1L);
+        User user = userMapper.selectLinkById(1L);
         System.out.println(user);
         Assertions.assertNotNull(user);
     }
@@ -44,11 +45,11 @@ public class EnumTest {
         user.setGender(GenderEnum.MALE);
         user.setStrEnum(StrEnum.ONE);
         user.setEmail("abc@mp.com");
-        Assertions.assertTrue(mapper.insert(user) > 0);
+        Assertions.assertTrue(userMapper.insert(user) > 0);
         // 成功直接拿回写的 ID
         System.err.println("\n插入成功 ID 为：" + user.getId());
 
-        List<User> list = mapper.selectList(null);
+        List<User> list = userMapper.selectList(null);
         for (User u : list) {
             System.out.println(u);
             assertThat(u.getAge()).isNotNull();
@@ -62,14 +63,14 @@ public class EnumTest {
 
     @Test
     public void delete() {
-        Assertions.assertTrue(mapper.delete(new QueryWrapper<User>().lambda()
+        Assertions.assertTrue(userMapper.delete(new QueryWrapper<User>().lambda()
                 .eq(User::getAge, AgeEnum.TWO)
         ) > 0);
     }
 
     @Test
     public void update() {
-        Assertions.assertTrue(mapper.update(new User().setAge(AgeEnum.TWO),
+        Assertions.assertTrue(userMapper.update(new User().setAge(AgeEnum.TWO),
                 new QueryWrapper<User>()
                         .eq("age", AgeEnum.THREE)
         ) > 0);
@@ -77,13 +78,13 @@ public class EnumTest {
 
     @Test
     public void select() {
-        User user = mapper.selectOne(new QueryWrapper<User>().lambda()
+        User user = userMapper.selectOne(new QueryWrapper<User>().lambda()
                 .eq(User::getId, 2));
         Assertions.assertEquals("Jack", user.getName());
         Assertions.assertSame(AgeEnum.THREE, user.getAge());
 
         //#1500 github: verified ok. Not a bug
-        List<User> userList = mapper.selectList(new QueryWrapper<User>().lambda()
+        List<User> userList = userMapper.selectList(new QueryWrapper<User>().lambda()
                 .eq(User::getUserState, UserState.ACTIVE));
         //TODO 一起测试的时候完蛋，先屏蔽掉了。
 //        Assertions.assertEquals(3, userList.size());

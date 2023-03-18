@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.samples.enums.entity.User;
  * @since 2018-08-11
  */
 public interface UserMapper extends BaseMapper<User> {
+
     User selectLinkById(Long id);
+
 }

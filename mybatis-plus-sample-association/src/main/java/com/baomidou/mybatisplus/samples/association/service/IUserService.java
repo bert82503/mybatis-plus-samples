@@ -16,4 +16,5 @@ import java.util.List;
 public interface IUserService extends IService<User> {
 
     List<User> selectUserPage(IPage<User> page, QueryWrapper<User> wrapper);
+
 }
