@@ -27,6 +27,7 @@ public class MyLogicSqlInjector extends DefaultSqlInjector {
     public List<AbstractMethod> getMethodList(Class<?> mapperClass, TableInfo tableInfo) {
         // Mapper方法列表
         List<AbstractMethod> methodList = super.getMethodList(mapperClass, tableInfo);
+        // 自定义操作方法
         methodList.add(new DeleteAll());
         methodList.add(new MyInsertAll());
         methodList.add(new MysqlInsertAllBatch());

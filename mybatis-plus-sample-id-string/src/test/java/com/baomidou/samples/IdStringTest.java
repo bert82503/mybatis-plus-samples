@@ -13,6 +13,7 @@ import java.util.List;
 
 @SpringBootTest
 public class IdStringTest {
+
     @Resource
     private UserMapper userMapper;
     @Resource
@@ -42,6 +43,6 @@ public class IdStringTest {
             users.add(user);
         }
         boolean result = userService.saveBatch(users);
-        Assertions.assertEquals(true, result);
+        Assertions.assertTrue(result);
     }
 }
