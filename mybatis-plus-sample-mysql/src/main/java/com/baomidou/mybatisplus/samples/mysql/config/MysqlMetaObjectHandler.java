@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 /**
  * 测试，自定义元对象字段填充控制器，实现公共字段自动写入
+ * @see com.baomidou.mybatisplus.core.handlers.MetaObjectHandler
  */
 public class MysqlMetaObjectHandler implements MetaObjectHandler {
 
@@ -23,8 +24,10 @@ public class MysqlMetaObjectHandler implements MetaObjectHandler {
         System.out.println("createDatetime=" + createDatetime);
         if (createDatetime == null) {
             //测试实体没有的字段，配置在公共填充，不应该set到实体里面
+            // 创建时间，自动填充
             this.strictInsertFill(metaObject, "createDatetime1", LocalDateTime.class, LocalDateTime.now())
-                .strictInsertFill(metaObject, "createDatetime", LocalDateTime.class, LocalDateTime.now());
+                .strictInsertFill(metaObject,
+                        "createDatetime", LocalDateTime.class, LocalDateTime.now());
         }
     }
 
@@ -34,8 +37,9 @@ public class MysqlMetaObjectHandler implements MetaObjectHandler {
         System.out.println("update of mysql fill");
         System.out.println("*************************");
         //测试实体没有的字段，配置在公共填充，不应该set到实体里面
+        // 更新时间，自动填充
         this.strictUpdateFill(metaObject, "updateDatetime1", LocalDateTime.class, LocalDateTime.now())
-            .strictUpdateFill(metaObject, "updateDatetime", LocalDateTime.class, LocalDateTime.now());
+            .strictUpdateFill(metaObject,
+                    "updateDatetime", LocalDateTime.class, LocalDateTime.now());
     }
 }
-
