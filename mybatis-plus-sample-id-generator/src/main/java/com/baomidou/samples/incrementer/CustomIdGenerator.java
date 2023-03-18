@@ -15,12 +15,13 @@ import lombok.extern.slf4j.Slf4j;
  * 仅作为示范
  *
  * @author nieqiuqiu 2019/11/30
+ * @see com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator
  */
 @Slf4j
 @Component
 public class CustomIdGenerator implements IdentifierGenerator {
 
-    private final AtomicLong al = new AtomicLong(1);
+    private final AtomicLong atomicLong = new AtomicLong(1);
 
     @Override
     public Long nextId(Object entity) {
@@ -29,7 +30,7 @@ public class CustomIdGenerator implements IdentifierGenerator {
         log.info("bizKey:{}", bizKey);
         MetaObject metaObject = SystemMetaObject.forObject(entity);
         String name = (String) metaObject.getValue("name");
-        final long id = al.getAndAdd(1);
+        final long id = atomicLong.getAndAdd(1L);
         log.info("为{}生成主键值->:{}", name, id);
         return id;
     }
