@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author sundongkai 2021/1/12
+ * @see com.baomidou.mybatisplus.extension.service.IService
+ * @see com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
  */
-@Service
+@Service("userService")
 public class UserService extends ServiceImpl<UserMapper, User> {
-
+    //
 }
