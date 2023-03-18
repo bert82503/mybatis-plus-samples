@@ -9,6 +9,10 @@ import lombok.Getter;
  */
 @Getter
 public enum TestEnum implements IEnum<Integer> {
+
+    /**
+     * 一
+     */
     ONE(1, "一"),
     TWO(2, "二");
 

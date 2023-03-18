@@ -31,7 +31,9 @@ import java.util.List;
 public class MybatisPlusConfig {
 
     @Bean("mybatisSqlSession")
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, GlobalConfig globalConfig) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, GlobalConfig globalConfig)
+            throws Exception {
+        // SQL会话
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
         /* 数据源 */
         sqlSessionFactory.setDataSource(dataSource);
@@ -46,13 +48,15 @@ public class MybatisPlusConfig {
         configuration.setJdbcTypeForNull(JdbcType.NULL);
         /* 驼峰转下划线 */
         configuration.setMapUnderscoreToCamelCase(true);
-        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
-        mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
-        mybatisPlusInterceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
-        sqlSessionFactory.setPlugins(mybatisPlusInterceptor);
         /* map 下划线转驼峰 */
         configuration.setObjectWrapperFactory(new MybatisMapWrapperFactory());
         sqlSessionFactory.setConfiguration(configuration);
+        // 拦截器
+        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+        // 分页拦截器
+        mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        mybatisPlusInterceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        sqlSessionFactory.setPlugins(mybatisPlusInterceptor);
         /* 自动填充插件 */
         globalConfig.setMetaObjectHandler(new MysqlMetaObjectHandler());
         sqlSessionFactory.setGlobalConfig(globalConfig);
@@ -61,8 +65,10 @@ public class MybatisPlusConfig {
 
     @Bean
     public GlobalConfig globalConfig() {
+        // 全局配置
         GlobalConfig conf = new GlobalConfig();
         conf.setDbConfig(new GlobalConfig.DbConfig().setColumnFormat("`%s`"));
+        // SQL注入器
         DefaultSqlInjector logicSqlInjector = new DefaultSqlInjector() {
             /**
              * 注入自定义全局方法

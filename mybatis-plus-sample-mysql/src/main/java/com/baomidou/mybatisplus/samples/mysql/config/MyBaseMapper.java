@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * @author miemie
  * @since 2018-09-13
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper 
  */
 public interface MyBaseMapper<T> extends BaseMapper<T> {
 
