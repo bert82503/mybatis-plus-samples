@@ -2,6 +2,7 @@ package com.baomidou.samples;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * 主键生成器启动器
  *
