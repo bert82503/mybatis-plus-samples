@@ -24,6 +24,7 @@ import java.util.List;
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)
 @SpringBootTest
 public class LogicDeleteTest {
+
     @Resource
     private CommonMapper commonMapper;
     @Resource
