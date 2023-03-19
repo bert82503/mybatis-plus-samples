@@ -15,5 +15,5 @@ import com.baomidou.mybatisplus.samples.pagination.mapper.UserMapper;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
-
+    //
 }
