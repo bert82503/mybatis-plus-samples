@@ -13,15 +13,17 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
+ * 存在安全漏洞
  * @author miemie
  * @since 2020-05-29
  */
 @SpringBootTest
-class PagehelperTest {
-    @Autowired
-    private UserMapper mapper;
+class PageHelperTest {
 
-    // mp 与 pagehelper 存在依赖 jsqlparser 冲突，不建议混用
+    @Autowired
+    private UserMapper userMapper;
+
+    // mp 与 PageHelper 存在依赖 jsqlparser 冲突，不建议混用
 
     @Test
     void test() {
@@ -32,7 +34,7 @@ class PagehelperTest {
 //        assertThat(records.size()).isEqualTo(1);
 
         // pagehelper
-        PageInfo<User> info = PageHelper.startPage(1, 2).doSelectPageInfo(() -> mapper.selectById(1));
+        PageInfo<User> info = PageHelper.startPage(1, 2).doSelectPageInfo(() -> userMapper.selectById(1));
         assertThat(info.getTotal()).isEqualTo(1L);
         List<User> list = info.getList();
         assertThat(list).isNotEmpty();
@@ -51,7 +53,7 @@ class PagehelperTest {
 
         // pagehelper
         PageInfo<User> info = PageHelper.startPage(1, 5)
-                .doSelectPageInfo(() -> mapper.selectList(Wrappers.<User>query().in("id", ids)));
+                .doSelectPageInfo(() -> userMapper.selectList(Wrappers.<User>query().in("id", ids)));
         assertThat(info.getTotal()).isEqualTo(2L);
         List<User> list = info.getList();
         assertThat(list).isNotEmpty();
