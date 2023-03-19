@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.samples.optlocker.mapper.UserMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
@@ -21,16 +20,17 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest
 class OptLockerTest {
+
     @Resource
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Order(0)
     @Test
-    public void testUpdateByIdSucc() {
+    public void testUpdateByIdSuccess() {
         User user = new User();
         user.setAge(18);
         user.setEmail("test@baomidou.com");
-        user.setName("optlocker");
+        user.setName("optLocker");
         user.setVersion(1);
         userMapper.insert(user);
         Long id = user.getId();
@@ -39,18 +39,20 @@ class OptLockerTest {
         userUpdate.setId(id);
         userUpdate.setAge(19);
         userUpdate.setVersion(1);
-        assertThat(userMapper.updateById(userUpdate)).isEqualTo(1);
+        assertThat(userMapper.updateById(userUpdate))
+                .isEqualTo(1);
         assertThat(userUpdate.getVersion()).isEqualTo(2);
     }
 
     @Order(1)
     @Test
-    public void testUpdateByIdSuccFromDb() {
+    public void testUpdateByIdSuccessFromDb() {
         User user = userMapper.selectById(1);
         int oldVersion = user.getVersion();
         int i = userMapper.updateById(user);
         assertThat(i).isEqualTo(1);
-        assertThat(oldVersion + 1).isEqualTo(user.getVersion());
+        assertThat(oldVersion + 1)
+                .isEqualTo(user.getVersion());
     }
 
     @Order(2)
@@ -59,7 +61,7 @@ class OptLockerTest {
         User user = new User();
         user.setAge(18);
         user.setEmail("test@baomidou.com");
-        user.setName("optlocker");
+        user.setName("optLocker");
         user.setVersion(1);
         userMapper.insert(user);
         Long id = user.getId();
@@ -74,11 +76,11 @@ class OptLockerTest {
 
     @Order(3)
     @Test
-    public void testUpdateByIdSuccWithNoVersion() {
+    public void testUpdateByIdSuccessWithNoVersion() {
         User user = new User();
         user.setAge(18);
         user.setEmail("test@baomidou.com");
-        user.setName("optlocker");
+        user.setName("optLocker");
         user.setVersion(1);
         userMapper.insert(user);
         Long id = user.getId();
@@ -103,7 +105,7 @@ class OptLockerTest {
      */
     @Order(4)
     @Test
-    public void testUpdateByEntitySucc() {
+    public void testUpdateByEntitySuccess() {
         QueryWrapper<User> ew = new QueryWrapper<>();
         ew.eq("version", 1);
         long count = userMapper.selectCount(ew);
