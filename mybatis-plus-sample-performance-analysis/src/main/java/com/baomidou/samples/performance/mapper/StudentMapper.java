@@ -7,10 +7,10 @@ import com.baomidou.samples.performance.entity.Student;
 
 /**
  * 学生Mapper层
- * @author nieqiurong 2018/8/11 20:21.
+ * @author nieqiurong 2018/8/11 20:21
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 @Mapper
 public interface StudentMapper extends BaseMapper<Student> {
-
-
+    //
 }
