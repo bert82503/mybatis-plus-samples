@@ -18,6 +18,7 @@ import java.util.Map;
 /**
  * @author miemie
  * @since 2018-08-10
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper 
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
