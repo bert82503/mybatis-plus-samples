@@ -6,6 +6,11 @@ import com.baomidou.mybatisplus.annotation.Version;
 
 import lombok.Data;
 
+/**
+ * @author yuxiaobin
+ * @see com.baomidou.mybatisplus.annotation.TableId
+ * @see com.baomidou.mybatisplus.annotation.Version
+ */
 @Data
 public class User {
 
@@ -14,6 +19,9 @@ public class User {
     private String name;
     private Integer age;
     private String email;
+    /**
+     * 乐观锁注解
+     */
     @Version
     private Integer version;
 }
