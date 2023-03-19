@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author miemie
  * @since 2018-08-10
+ * @see com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor
+ * @see com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor
  */
 @Configuration
 public class MybatisPlusConfig {
