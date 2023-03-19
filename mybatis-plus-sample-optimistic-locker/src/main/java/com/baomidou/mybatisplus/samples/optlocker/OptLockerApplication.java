@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.baomidou.mybatisplus.samples.*.mapper")
-public class OptlockerApplication {
+public class OptLockerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OptlockerApplication.class, args);
+        SpringApplication.run(OptLockerApplication.class, args);
     }
 }
