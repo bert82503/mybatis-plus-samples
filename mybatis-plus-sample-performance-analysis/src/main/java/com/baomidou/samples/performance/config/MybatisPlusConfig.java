@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MybatisPlusConfig {
 
-//    该插件 3.1.2 后版本废弃，推荐使用
+//    // 该插件 3.1.2 后版本废弃，推荐使用
 //    @Bean
-//    public PerformanceInterceptor performanceInterceptor(){
-//        //启用性能分析插件
+//    public PerformanceInterceptor performanceInterceptor() {
+//        // 启用性能分析插件
 //        return new PerformanceInterceptor();
 //    }
 }
