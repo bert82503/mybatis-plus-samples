@@ -10,4 +10,3 @@ public class TenantApplication {
         SpringApplication.run(TenantApplication.class, args);
     }
 }
-

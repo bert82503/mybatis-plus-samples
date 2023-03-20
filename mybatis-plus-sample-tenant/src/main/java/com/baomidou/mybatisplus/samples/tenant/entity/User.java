@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 public class User {
     private Long id;
     /**
-     * 租户 ID
+     * 租户ID
      */
     private Long tenantId;
     private String name;

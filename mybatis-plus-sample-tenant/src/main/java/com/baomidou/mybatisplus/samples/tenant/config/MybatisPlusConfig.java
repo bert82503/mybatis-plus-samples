@@ -24,23 +24,24 @@ public class MybatisPlusConfig {
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        // 拦截器
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         // TenantLineInnerInterceptor-租户拦截器（TenantId 行级）
         // TenantLineHandler-租户处理器（TenantId 行级）
         interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(
                 new TenantLineHandler() {
-            @Override
-            public Expression getTenantId() {
-                // 获取租户 ID 值表达式，只支持单个 ID 值
-                return new LongValue(1);
-            }
+                    @Override
+                    public Expression getTenantId() {
+                        // 获取租户 ID 值表达式，只支持单个 ID 值
+                        return new LongValue(1);
+                    }
 
-            // 这是 default 方法,默认返回 false 表示所有表都需要拼多租户条件
-            @Override
-            public boolean ignoreTable(String tableName) {
-                return !"user".equalsIgnoreCase(tableName);
-            }
-        }
+                    // 这是 default 方法,默认返回 false 表示所有表都需要拼多租户条件
+                    @Override
+                    public boolean ignoreTable(String tableName) {
+                        return !"user".equalsIgnoreCase(tableName);
+                    }
+                }
         ));
         // 如果用了分页插件注意先 add TenantLineInnerInterceptor 再 add PaginationInnerInterceptor
         // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false
