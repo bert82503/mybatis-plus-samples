@@ -6,6 +6,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+/**
+ * @author alan2lin
+ * @see com.baomidou.mybatisplus.annotation.TableName
+ * @see com.baomidou.mybatisplus.annotation.TableId
+ */
 @Data
 @KeySequence("SEQ_CITY")
 @TableName("city")
