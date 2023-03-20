@@ -10,9 +10,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @MapperScan("com.baomidou.mybatisplus.samples.resultmap.mapper")
 @SpringBootApplication
-public class ResultmapApplication {
+public class ResultMapApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ResultmapApplication.class, args);
+        SpringApplication.run(ResultMapApplication.class, args);
     }
 }
