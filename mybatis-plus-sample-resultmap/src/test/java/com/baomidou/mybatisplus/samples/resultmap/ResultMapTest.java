@@ -21,7 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @Slf4j
 @SpringBootTest
-class ResultmapTest {
+class ResultMapTest {
+
     @Resource
     private ChildMapper childMapper;
     @Resource
