@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.incrementer.IKeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 public class MpConfig {
@@ -14,7 +14,7 @@ public class MpConfig {
     @Bean
     public GlobalConfig globalConfiguration() {
         GlobalConfig conf = new GlobalConfig();
-        conf.setDbConfig(new GlobalConfig.DbConfig().setKeyGenerators(Arrays.asList(
+        conf.setDbConfig(new GlobalConfig.DbConfig().setKeyGenerators(Collections.singletonList(
                 // h2 1.x 的写法（默认 2.x 的写法）
                 new IKeyGenerator() {
 
