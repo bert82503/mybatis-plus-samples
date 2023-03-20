@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * @author miemie
  * @since 2019-11-27
+ * @see com.baomidou.mybatisplus.annotation.TableName
+ * @see com.baomidou.mybatisplus.annotation.TableField
  */
 @Data
 @TableName(autoResultMap = true) //不配合 typeHandler 或 numericScale 使用无意义,演示而已

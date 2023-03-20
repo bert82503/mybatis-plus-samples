@@ -10,6 +10,8 @@ import lombok.Data;
 /**
  * @author miemie
  * @since 2019-11-27
+ * @see com.baomidou.mybatisplus.annotation.TableName
+ * @see com.baomidou.mybatisplus.annotation.TableField
  */
 @Data
 @TableName(resultMap = "m_b") // 对应xml里的 id
