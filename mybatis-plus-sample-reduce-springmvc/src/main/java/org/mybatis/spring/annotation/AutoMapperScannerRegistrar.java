@@ -132,16 +132,14 @@ public class AutoMapperScannerRegistrar implements ImportBeanDefinitionRegistrar
         }
         scanner.setBeanPackages(StringUtils.toStringArray(beanPackages));
 
-
-
-       if( annoAttrs.get("excludedBeans") != null){
-           List<String> excludingBeans = new ArrayList<>();
-           excludingBeans.addAll(
-                   Arrays.stream(annoAttrs.getStringArray("excludedBeans"))
-                           .filter(StringUtils::hasText)
-                           .collect(Collectors.toList()));
-           scanner.setExcludedBeans(StringUtils.toStringArray(excludingBeans));
-       }
+        if (annoAttrs.get("excludedBeans") != null) {
+            List<String> excludingBeans = new ArrayList<>();
+            excludingBeans.addAll(
+                    Arrays.stream(annoAttrs.getStringArray("excludedBeans"))
+                            .filter(StringUtils::hasText)
+                            .collect(Collectors.toList()));
+            scanner.setExcludedBeans(StringUtils.toStringArray(excludingBeans));
+        }
 
         scanner.setSuperMapperName(annoAttrs.getString("superMapperClassName"));
 

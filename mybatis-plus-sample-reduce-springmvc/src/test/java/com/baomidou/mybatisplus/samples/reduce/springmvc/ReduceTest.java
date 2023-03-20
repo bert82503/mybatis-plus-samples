@@ -19,8 +19,9 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring.xml"})
 public class ReduceTest {
+
     @Autowired
-    ApplicationContext context;
+    private ApplicationContext applicationContext;
     @Resource
     private UserMapper userMapper;
 
@@ -63,19 +64,20 @@ public class ReduceTest {
         Assertions.assertEquals(3, page.getRecords().size());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testGeneratedMapper() {
-
         String cityMapperClassName = "cityMapper";
-        BaseMapper cityMapper =(BaseMapper) context.getBean(cityMapperClassName);
+        BaseMapper<City> cityMapper = (BaseMapper<City>) applicationContext
+                .getBean(cityMapperClassName, BaseMapper.class);
 
-        City city = (City) cityMapper.selectById(1);
+        City city = cityMapper.selectById(1);
 
         Assertions.assertEquals(city.getId().longValue(),1L);
 
 
         String districtMapperClassName = "districtMapper";
-        boolean isContained = context.containsBean(districtMapperClassName);
+        boolean isContained = applicationContext.containsBean(districtMapperClassName);
         Assertions.assertFalse(isContained);
 
         //BaseMapper districtMapper =(BaseMapper) context.getBean(districtMapperClassName);
@@ -83,12 +85,12 @@ public class ReduceTest {
         //Assertions.assertEquals(district.getId().longValue(),1L);
 
         String userMapperClassName = "userMapper";
-        BaseMapper userMapper =(BaseMapper) context.getBean(userMapperClassName);
+        BaseMapper<User> userMapper =(BaseMapper<User>) applicationContext
+                .getBean(userMapperClassName, BaseMapper.class);
 
         userMapper.selectById(1);
-        User user = (User) userMapper.selectById(1);
+        User user = userMapper.selectById(1);
         Assertions.assertEquals(user.getId().longValue(),1L);
-
     }
 
 }
