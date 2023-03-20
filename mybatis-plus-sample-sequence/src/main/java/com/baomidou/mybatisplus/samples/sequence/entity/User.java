@@ -6,6 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import lombok.Data;
 
+/**
+ * @author yuxiaobin
+ * @see com.baomidou.mybatisplus.annotation.TableId
+ */
 @Data
 @KeySequence("SEQ_USER")
 public class User {

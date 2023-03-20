@@ -22,7 +22,8 @@ public class MybatisPlusConfig {
      * @return
      */
     @Bean
-    public H2KeyGenerator h2KeyGenerator(){
+    public H2KeyGenerator h2KeyGenerator() {
+        // 表主键生成器
         return new H2KeyGenerator();
     }
 
