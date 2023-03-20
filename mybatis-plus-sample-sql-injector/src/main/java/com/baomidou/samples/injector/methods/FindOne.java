@@ -9,8 +9,19 @@ import org.apache.ibatis.mapping.SqlSource;
  * 删除全部
  *
  * @author K 2019-7-9
+ * @see com.baomidou.mybatisplus.core.injector.AbstractMethod
  */
 public class FindOne extends AbstractMethod {
+
+    private static final long serialVersionUID = -9089408577163946014L;
+
+    public FindOne() {
+        this("findOne");
+    }
+
+    public FindOne(String methodName) {
+        super(methodName);
+    }
 
     @Override
     public MappedStatement injectMappedStatement(Class<?> mapperClass, Class<?> modelClass, TableInfo tableInfo) {
@@ -18,8 +29,7 @@ public class FindOne extends AbstractMethod {
         String sql = "select * from " + tableInfo.getTableName()
                 + " where " + tableInfo.getKeyColumn() + "=#{" + tableInfo.getKeyProperty() + "}";
         /* mapper 接口方法名一致 */
-        String method = "findOne";
         SqlSource sqlSource = languageDriver.createSqlSource(configuration, sql, modelClass);
-        return addSelectMappedStatementForTable(mapperClass, method, sqlSource, tableInfo);
+        return this.addSelectMappedStatementForTable(mapperClass, sqlSource, tableInfo);
     }
 }
