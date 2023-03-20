@@ -14,15 +14,15 @@ import java.util.List;
 /**
  * @author K
  * @since 2019/7/9
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 public interface MyBaseMapper<T> extends BaseMapper<T> {
-
-    /* ↓↓↓↓↓↓↓↓↓↓↓↓↓↓  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓ */
 
     /**
      * 以下定义的 4个 default method, copy from {@link com.baomidou.mybatisplus.extension.toolkit.ChainWrappers}
      */
     default QueryChainWrapper<T> queryChain() {
+        // 查询条件链式
         return new QueryChainWrapper<>(this);
     }
 
