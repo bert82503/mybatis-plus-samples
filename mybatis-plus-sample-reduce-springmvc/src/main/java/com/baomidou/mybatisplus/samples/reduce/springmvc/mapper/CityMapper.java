@@ -7,5 +7,9 @@ package com.baomidou.mybatisplus.samples.reduce.springmvc.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.samples.reduce.springmvc.entity.City;
 
+/**
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
+ */
 public interface CityMapper extends BaseMapper<City> {
+    //
 }

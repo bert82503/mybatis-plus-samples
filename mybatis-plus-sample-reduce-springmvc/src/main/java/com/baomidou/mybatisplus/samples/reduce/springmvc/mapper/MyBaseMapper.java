@@ -7,10 +7,11 @@ package com.baomidou.mybatisplus.samples.reduce.springmvc.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * @Description: TODO
  * @Author: alan2lin
  * @Date: 2019/7/4 22:50
  * @Version V1.0
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 public interface MyBaseMapper<T> extends BaseMapper<T> {
+    //
 }
