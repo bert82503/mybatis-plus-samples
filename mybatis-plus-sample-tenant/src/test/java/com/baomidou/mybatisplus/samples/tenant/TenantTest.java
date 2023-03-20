@@ -19,34 +19,35 @@ import java.util.List;
  */
 @SpringBootTest
 public class TenantTest {
+
     @Resource
-    private UserMapper mapper;
+    private UserMapper userMapper;
 
     @Test
     public void aInsert() {
         User user = new User();
         user.setName("一一");
-        Assertions.assertTrue(mapper.insert(user) > 0);
-        user = mapper.selectById(user.getId());
-        Assertions.assertTrue(1 == user.getTenantId());
+        Assertions.assertTrue(userMapper.insert(user) > 0);
+        user = userMapper.selectById(user.getId());
+        Assertions.assertEquals((long) user.getTenantId(), 1);
     }
 
 
     @Test
     public void bDelete() {
-        Assertions.assertTrue(mapper.deleteById(3L) > 0);
+        Assertions.assertTrue(userMapper.deleteById(3L) > 0);
     }
 
 
     @Test
     public void cUpdate() {
-        Assertions.assertTrue(mapper.updateById(new User().setId(1L).setName("mp")) > 0);
+        Assertions.assertTrue(userMapper.updateById(new User().setId(1L).setName("mp")) > 0);
     }
 
     @Test
     public void dSelect() {
-        List<User> userList = mapper.selectList(null);
-        userList.forEach(u -> Assertions.assertTrue(1 == u.getTenantId()));
+        List<User> userList = userMapper.selectList(null);
+        userList.forEach(u -> Assertions.assertEquals((long) u.getTenantId(), 1));
     }
 
     /**
@@ -55,14 +56,14 @@ public class TenantTest {
      */
     @Test
     public void manualSqlTenantFilterTest() {
-        System.out.println(mapper.myCount());
+        System.out.println(userMapper.myCount());
     }
 
     @Test
     public void testTenantFilter(){
-        mapper.getAddrAndUser(null).forEach(System.out::println);
-        mapper.getAddrAndUser("add").forEach(System.out::println);
-        mapper.getUserAndAddr(null).forEach(System.out::println);
-        mapper.getUserAndAddr("J").forEach(System.out::println);
+        userMapper.getAddrAndUser(null).forEach(System.out::println);
+        userMapper.getAddrAndUser("add").forEach(System.out::println);
+        userMapper.getUserAndAddr(null).forEach(System.out::println);
+        userMapper.getUserAndAddr("J").forEach(System.out::println);
     }
 }
