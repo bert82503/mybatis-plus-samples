@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * 自定义复杂类型处理器<br/>
  * 不要问我为什么要重写 parse 因为顶层父类是无法获取到准确的待转换复杂返回类型数据
+ * @see com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler
  */
 public class WalletListTypeHandler extends JacksonTypeHandler {
 

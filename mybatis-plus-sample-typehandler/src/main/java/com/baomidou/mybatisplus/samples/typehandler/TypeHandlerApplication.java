@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan("com.baomidou.mybatisplus.samples.typehandler.mapper")
 @SpringBootApplication
-public class TypehandlerApplication {
+public class TypeHandlerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TypehandlerApplication.class, args);
+		SpringApplication.run(TypeHandlerApplication.class, args);
 	}
 }
