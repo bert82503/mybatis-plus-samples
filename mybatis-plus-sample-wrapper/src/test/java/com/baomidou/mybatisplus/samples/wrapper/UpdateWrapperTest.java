@@ -23,19 +23,21 @@ public class UpdateWrapperTest {
      */
     @Test
     public void tests() {
-
         //方式一：
         User user = new User();
         user.setAge(29);
         user.setEmail("test3update@baomidou.com");
 
-        userMapper.update(user,new UpdateWrapper<User>().eq("name","Tom"));
+        userMapper.update(user,new UpdateWrapper<User>()
+                .eq("name","Tom")
+        );
 
         //方式二：
         //不创建User对象
         userMapper.update(null,new UpdateWrapper<User>()
-                .set("age",29).set("email","test3update@baomidou.com").eq("name","Tom"));
-
+                .set("age",29).set("email","test3update@baomidou.com")
+                .eq("name","Tom")
+        );
     }
 
     /**
@@ -44,20 +46,21 @@ public class UpdateWrapperTest {
      */
     @Test
     public void testLambda() {
-
         //方式一：
         User user = new User();
         user.setAge(29);
         user.setEmail("test3update@baomidou.com");
 
-        userMapper.update(user,new LambdaUpdateWrapper<User>().eq(User::getName,"Tom"));
+        userMapper.update(user,new LambdaUpdateWrapper<User>()
+                .eq(User::getName,"Tom")
+        );
 
         //方式二：
         //不创建User对象
         userMapper.update(null,new LambdaUpdateWrapper<User>()
-                .set(User::getAge,29).set(User::getEmail,"test3update@baomidou.com").eq(User::getName,"Tom"));
-
+                .set(User::getAge,29).set(User::getEmail,"test3update@baomidou.com")
+                .eq(User::getName,"Tom")
+        );
     }
-
 
 }
