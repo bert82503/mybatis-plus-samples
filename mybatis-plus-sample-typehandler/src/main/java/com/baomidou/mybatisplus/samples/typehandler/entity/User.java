@@ -16,6 +16,8 @@ import java.util.List;
  *
  * @author hubin
  * @since 2018-08-11
+ * @see com.baomidou.mybatisplus.annotation.TableName
+ * @see com.baomidou.mybatisplus.annotation.TableField
  */
 @Data
 @Accessors(chain = true)
