@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.samples.wrapper.entity.User;
 /**
  * @author miemie
  * @since 2018-08-10
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 public interface UserMapper extends BaseMapper<User> {
+    //
 }
