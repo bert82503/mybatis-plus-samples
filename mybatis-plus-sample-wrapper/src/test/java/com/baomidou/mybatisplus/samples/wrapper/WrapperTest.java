@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.samples.wrapper.entity.User;
-import com.baomidou.mybatisplus.samples.wrapper.mapper.RoleMapper;
 import com.baomidou.mybatisplus.samples.wrapper.mapper.UserMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,14 +22,14 @@ public class WrapperTest {
 
     @Resource
     private UserMapper userMapper;
-    @Resource
-    private RoleMapper roleMapper;
 
     @Test
     public void tests() {
         System.out.println("----- 普通查询 ------");
-        List<User> plainUsers = userMapper.selectList(new QueryWrapper<User>().eq("role_id", 2L));
-        List<User> lambdaUsers = userMapper.selectList(new QueryWrapper<User>().lambda().eq(User::getRoleId, 2L));
+        List<User> plainUsers = userMapper.selectList(new QueryWrapper<User>()
+                .eq("role_id", 2L));
+        List<User> lambdaUsers = userMapper.selectList(new QueryWrapper<User>().lambda()
+                .eq(User::getRoleId, 2L));
         Assertions.assertEquals(plainUsers.size(), lambdaUsers.size());
         print(plainUsers);
 
@@ -72,15 +71,15 @@ public class WrapperTest {
         userMapper.update(new User(), uw);
         User u4 = userMapper.selectById(4);
         Assertions.assertNull(u4.getEmail());
-
-
     }
 
     @Test
     public void lambdaQueryWrapper() {
         System.out.println("----- 普通查询 ------");
-        List<User> plainUsers = userMapper.selectList(new LambdaQueryWrapper<User>().eq(User::getRoleId, 2L));
-        List<User> lambdaUsers = userMapper.selectList(new QueryWrapper<User>().lambda().eq(User::getRoleId, 2L));
+        List<User> plainUsers = userMapper.selectList(new LambdaQueryWrapper<User>()
+                .eq(User::getRoleId, 2L));
+        List<User> lambdaUsers = userMapper.selectList(new QueryWrapper<User>().lambda()
+                .eq(User::getRoleId, 2L));
         Assertions.assertEquals(plainUsers.size(), lambdaUsers.size());
         print(plainUsers);
 
@@ -147,8 +146,8 @@ public class WrapperTest {
         List<User> plainUsers = userMapper.selectList(qw);
 
         LambdaQueryWrapper<User> lwq = new LambdaQueryWrapper<>();
-        lwq.select(User::getId,User::getName).between(User::getAge,20,25)
-                .orderByAsc(User::getRoleId,User::getId);
+        lwq.select(User::getId, User::getName).between(User::getAge, 20, 25)
+                .orderByAsc(User::getRoleId, User::getId);
         List<User> lambdaUsers = userMapper.selectList(lwq);
 
         print(plainUsers);
