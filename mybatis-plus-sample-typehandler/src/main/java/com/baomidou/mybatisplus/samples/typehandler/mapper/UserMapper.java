@@ -11,7 +11,8 @@ import com.baomidou.mybatisplus.samples.typehandler.entity.User;
  *
  * @author hubin
  * @since 2018-08-11
+ * @see com.baomidou.mybatisplus.core.mapper.BaseMapper
  */
 public interface UserMapper extends BaseMapper<User> {
-
+    //
 }
