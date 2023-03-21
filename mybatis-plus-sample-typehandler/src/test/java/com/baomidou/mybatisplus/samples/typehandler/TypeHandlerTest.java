@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * <p>
@@ -44,8 +44,10 @@ public class TypeHandlerTest {
         Assertions.assertEquals("银联钱包", Jack.getWallets().get(0).getName());
 
         // wrapper typeHandler 测试
-        LambdaUpdateWrapper<User> wrapper = Wrappers.<User>lambdaUpdate().set(User::getWallets, Arrays.asList(new Wallet("Tom",
-                Arrays.asList(new Currency("RMB", 1000d)))), "typeHandler=com.baomidou.mybatisplus.samples.typehandler.WalletListTypeHandler");
+        LambdaUpdateWrapper<User> wrapper = Wrappers.<User>lambdaUpdate()
+                .set(User::getWallets, Collections.singletonList(new Wallet("Tom",
+                        Collections.singletonList(new Currency("RMB", 1000d)))),
+                        "typeHandler=com.baomidou.mybatisplus.samples.typehandler.WalletListTypeHandler");
         wrapper.eq(User::getId, 2L);
         Assertions.assertEquals(userMapper.update(new User().setAge(99), wrapper), 1);
         System.err.println(userMapper.selectById(2));
