@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author miemie
  * @since 2019-11-28
+ * @see org.springframework.boot.CommandLineRunner
  */
 @Component
 public class MpJsonConfig implements CommandLineRunner {
@@ -22,13 +23,17 @@ public class MpJsonConfig implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
+        // Jackson
         JacksonTypeHandler.setObjectMapper(new ObjectMapper());
+        // Gson
         GsonTypeHandler.setGson(new Gson());
     }
 
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        // 拦截器
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 分页拦截器
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
         return interceptor;
     }
